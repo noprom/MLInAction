@@ -40,3 +40,20 @@ def createDataSet():
     group = array([[1.0,1.1],[1.0,1.0],[0,0],[0,0.1]])
     labels = ['A', 'A', 'B', 'B']
     return group, labels
+
+def file2matrix(filename):
+    '将文件内容转化为矩阵'
+    fr = open(filename)
+    numberOfLines = len(fr.readlines())         #get the number of lines in the file
+    returnMat = zeros((numberOfLines,3))        #prepare matrix to return
+    classLabelVector = []                       #prepare labels return
+    fr = open(filename)
+    index = 0
+    for line in fr.readlines():
+        line = line.strip()
+        listFromLine = line.split('\t')
+        returnMat[index,:] = listFromLine[0:3]
+        #classLabelVector.append(int(listFromLine[-1]))
+        classLabelVector.append(listFromLine[-1])
+        index += 1
+    return returnMat,classLabelVector
