@@ -57,3 +57,13 @@ def file2matrix(filename):
         classLabelVector.append(listFromLine[-1])
         index += 1
     return returnMat,classLabelVector
+
+def autoNorm(dataSet):
+    minVals = dataSet.min(0)
+    maxVals = dataSet.max(0)
+    ranges = maxVals - minVals
+    normDataSet = zeros(shape(dataSet)) #创建一个零矩阵,大小和原来的矩阵一样
+    m = dataSet.shape[0]
+    normDataSet = dataSet - tile(minVals, (m, 1))
+    normDataSet = normDataSet / tile(ranges, (m, 1)) #element wise divide
+    return normDataSet, ranges, minVals
