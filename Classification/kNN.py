@@ -31,7 +31,7 @@ def classify0(inX, dataSet, labels, k):
     # 排序产生一个新的列表返回
     # operator.itemgetter(1):根据出现的次数进行排序
     # reversed: 默认False,从小大大;若为True则从大到小
-    sortedClassCount = sorted(classCount.iteritems(), key = operator.itemgetter(1), reversed = True)
+    sortedClassCount = sorted(classCount.iteritems(), key = operator.itemgetter(1), reverse = True)
     # 返回出现次数最多的类名字
     return sortedClassCount[0][0]
 
