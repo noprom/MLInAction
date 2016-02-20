@@ -69,17 +69,17 @@ def autoNorm(dataSet):
     return normDataSet, ranges, minVals
 
 def datingClassTest():
-    hoRatio = 0.50 #hold out 10%
-    datingDataMat, datingLabels = file2matrix('datingTestSet2.txt') #load the data
+    hoRatio = 0.50      #hold out 10%
+    datingDataMat,datingLabels = file2matrix('datingTestSet2.txt')       #load data setfrom file
     normMat, ranges, minVals = autoNorm(datingDataMat)
-    m = normMat.shape[0] #读取矩阵第一维的长度
-    numTestVecs = int(m * hoRatio)
+    m = normMat.shape[0]
+    numTestVecs = int(m*hoRatio)
     errorCount = 0.0
     for i in range(numTestVecs):
-        classifierResult = classify0(normMat[i, :], normMat[numTestVecs:m, :], datingLabels[numTestVecs: m], 3)
-        print "the classifier came back with: %d, the real answer is: %d" % (classifierResult, datingLabels[i])
+        classifierResult = classify0(normMat[i,:],normMat[numTestVecs:m,:],datingLabels[numTestVecs:m],3)
+        print "the classifier came back with: %s, the real answer is: %s" % (classifierResult, datingLabels[i])
         if (classifierResult != datingLabels[i]): errorCount += 1.0
-    print "the total error rate is: %f" % (errorCount / float(numTestVecs))
+    print "the total error rate is: %f" % (errorCount/float(numTestVecs))
     print errorCount
 
 def classifyPerson():
@@ -91,4 +91,4 @@ def classifyPerson():
     normMat, ranges, minVals = autoNorm(datingDataMat)
     inArr = array([ffMiles, percentTats, iceCream])
     classifierResult = classify0((inArr - minVals)/ranges, normMat, datingLabels, 3)
-    print "You will probably like this person:", resultList[classifierResult - 1]
+    print "You will probably like this person:", resultList[int(classifierResult) - 1]
