@@ -29,3 +29,12 @@ def calcShannonEnt(dataSet):
         prob = float(labelCounts[key])/numEntries
         shannonEnt -= prob * log(prob,2) #log base 2
     return shannonEnt
+
+def splitDataSet(dataSet, axis, value):
+    retDataSet = []
+    for fectVec in dataSet:
+        if fectVec[axis] == value:
+            reducedFectVec = fectVec[:axis] #chop out axis used for splitting
+            reducedFectVec.extend(fectVec[axis + 1:])
+            retDataSet.append(reducedFectVec)
+    return retDataSet
