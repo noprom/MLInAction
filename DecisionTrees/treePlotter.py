@@ -50,8 +50,18 @@ def createPlot(inTree):
     plotNode('a left node', (0.8, 0.1), (0.3, 0.8), leftNode)
     plt.show()
 
+def retrieveTree(i):
+    listOfTrees = [{'no surfacing': {0: 'no', 1: {'flippers': {0: 'no', 1: 'yes'}}}},
+                   {'no surfacing': {0: 'no', 1: {'flippers': {0: {'head': {0: 'no', 1: 'yes'}}, 1: 'no'}}}}]
+    return listOfTrees[i]
+
 # show the tree
-import trees
-myDat,labels=trees.createDataSet()
-myTree = trees.createTree(myDat,labels)
-createPlot(myTree)
+#import trees
+#myDat,labels=trees.createDataSet()
+#myTree = trees.createTree(myDat,labels)
+#createPlot(myTree)
+
+# calculate the depth
+myTree = retrieveTree (0)
+print getNumLeafs(myTree)
+print getTreeDepth(myTree)
